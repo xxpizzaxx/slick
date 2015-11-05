@@ -108,6 +108,7 @@ trait SQLiteProfile extends JdbcProfile {
       }.getOrElse{super.default}
       override def tpe = dbType match {
         case Some("DOUBLE") => "Double"
+        case Some(t) if t.startsWith("DECIMAL") => "Double"
         case Some("DATE") => "java.sql.Date"
         case Some("TIME") => "java.sql.Time"
         case Some("TIMESTAMP") => "java.sql.Timestamp"
